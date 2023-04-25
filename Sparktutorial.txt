@@ -11,4 +11,28 @@ get("/users",(Request req ,Response res)-> {
  //
  
  
+ Where to add dependencies ?
+ //After properties
+ </properties>
+    <dependencies>
+        <dependency>
+    <groupId>com.sparkjava</groupId>
+    <artifactId>spark-core</artifactId>
+    <version>2.9.4</version>
+</dependency>
+
+<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.8.0</version>
+</dependency>
+        <dependency>
+            <groupId>com.vaadin.external.google</groupId>
+            <artifactId>android-json</artifactId>
+            <version>0.0.20131108.vaadin1</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
+</project>
+ 
  
