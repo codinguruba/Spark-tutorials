@@ -1,0 +1,14 @@
+
+// How to use get code//
+
+get("/users",(Request req ,Response res)-> {
+           //some code//
+           res.type("application/json");
+           User user = new User("101","Miraj","Pokhara");
+           return new Gson().toJson(user);
+       });
+       
+ //
+ 
+ 
+ 
