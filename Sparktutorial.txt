@@ -35,5 +35,27 @@ get("/users",(Request req ,Response res)-> {
         </dependency>
     </dependencies>
 </project>
+
+// post from postman//
+package com.mycompany.mavenproject2;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import static spark.Spark.*;
+public class Sparktutorial {
+    public static void main(String[] args) {
+       post("/user", (req, res) -> {
+      res.type("application/json");
+      JsonObject body = new JsonParser().parse(req.body()).getAsJsonObject();
+      String name = body.get("name").getAsString();
+      String address = body.get("address").getAsString();
+      int age = body.get("age").getAsInt();
+      System.out.println(name);
+     
+     return "Success";
+      
+    });
+    }
+ 
+}
  
  
