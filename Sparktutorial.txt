@@ -57,5 +57,55 @@ public class Sparktutorial {
     }
  
 }
+// Using post to insert data //
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import static spark.Spark.*;
+
+
+public class Sparktutorial {
+
+    public static void main(String[] args) {
+        String uname = "root";
+        String url = "jdbc:mysql://localhost:3306/user";
+        String pwd = "";
+
+        post("/user", (req, res) -> {
+            Connection con = null;
+            try{
+                
+            res.type("application/json");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url, uname, pwd);
+            JsonObject body = new JsonParser().parse(req.body()).getAsJsonObject();
+            
+            String name = body.get("name").getAsString();
+            String address = body.get("address").getAsString();
+            String age = body.get("age").getAsString();
+            
+            String sql = "INSERT INTO mytable (name, age, address) VALUES (?, ?, ?)";
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, name);
+            statement.setString(2, address);
+            statement.setString(3, age);
+            statement.executeUpdate();
+            
+            }
+            
+            catch(Exception ex){
+                System.out.println(ex);
+            }
+            
+
+            return "Success";
+
+        });
+    }
+
+}
+
  
  
