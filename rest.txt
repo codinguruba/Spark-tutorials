@@ -1,0 +1,25 @@
+  // Post Method//
+        post("/user", (req, res) -> {  
+            res.type("application/json");
+            JsonObject body = new JsonParser().parse(req.body()).getAsJsonObject();
+            String name = body.get("name").getAsString();
+            String address = body.get("address").getAsString();
+            String age = body.get("age").getAsString();
+            
+            UserserviceImp ob = new UserserviceImp();
+            User user = new User(name,address,age);
+            ob.createUser(user);
+            return "{\"status\": \"success\"}";
+    
+            
+        });
+        
+        //Delete method//
+        delete("/user", (req, res) -> { 
+            UserserviceImp ob = new UserserviceImp();
+            JsonObject body = new JsonParser().parse(req.body()).getAsJsonObject();
+            String address = body.get("address").getAsString();
+            ob.deleteUser(address);
+           
+           return "{\"status\": \"success\"}";
+         });
