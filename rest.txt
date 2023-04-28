@@ -23,3 +23,25 @@
            
            return "{\"status\": \"success\"}";
          });
+ 
+ 
+       //Delete method//
+        delete("/user", (req, res) -> { 
+            UserserviceImp ob = new UserserviceImp();
+            JsonObject body = new JsonParser().parse(req.body()).getAsJsonObject();
+            String address = body.get("address").getAsString();
+            ob.deleteUser(address);
+           
+           return "{\"status\": \"success\"}";
+         });
+        
+        //update
+           put("/user", (req, res) -> { 
+           UserserviceImp ob = new UserserviceImp();
+           JsonObject body = new JsonParser().parse(req.body()).getAsJsonObject();
+           String name = body.get("name").getAsString();
+           String address = body.get("address").getAsString();
+           ob.updateUser(name, address);
+           return "{\"status\": \"success\"}";
+         });
+        
