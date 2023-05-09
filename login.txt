@@ -1,0 +1,13 @@
+ /*  public String validateLogin(Request request, Response response) {
+      //  JsonObject body = new JsonParser().parse(request.body()).getAsJsonObject();
+        String email = request.queryParams("email");
+        String password = request.queryParams("password");
+        if (ob.validateLogin(email, password)) {
+            response.status(200);
+            return "Successfull login";
+        } else {
+            response.status(400);
+            return "Invalid email or password";
+    
+    
+    */ 
