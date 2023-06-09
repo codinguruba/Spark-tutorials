@@ -1,0 +1,30 @@
+  public boolean login(String email ,String password){
+        System.out.println("Checking");
+        try(Connection con = DBConnection.createConnection();
+        PreparedStatement pt = con.prepareStatement("SELECT * FROM Employee Where email = ? ")){
+        pt.setString(1, email); 
+        try(ResultSet rs = pt.executeQuery()){
+               if(rs.next()){
+                 String storedPasswordHash = rs.getString("password");
+                   System.out.println(storedPasswordHash);
+                 if(storedPasswordHash.equals(PasswordUtility.hashPassword(password))){
+                     System.out.println("Successfull login");
+                     String query = "UPDATE Employee SET login_count = 0 WHERE email = ?";
+                     try(PreparedStatement updatept = con.prepareStatement(query) ){
+                         updatept.setString(1, email);
+                         updatept.executeUpdate();
+                        
+                    }
+                     return true;
+                 }
+               }   
+              
+        }
+          return false;  
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+            return false;
+        }
+        
+    }
